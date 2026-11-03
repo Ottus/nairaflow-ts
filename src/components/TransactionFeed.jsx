@@ -115,7 +115,7 @@ export default function TransactionFeed({ transactions, filter, onFilterChange }
             className = 'px-2 py-1 rounded text-xs border'
             style = {{borderColor: 'var(--color-border)', background: 'var(--color-surface-alt)', color: 'var(--color-text)'}}>
               {myDateFilters.map((f) => (
-                <option value={f.value || 'all'}>
+                <option key={f.value || 'all'} value={f.value || 'all'}>
                 {f.label}
                 </option>
               ))}

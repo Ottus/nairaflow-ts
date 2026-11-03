@@ -88,20 +88,20 @@ export class TransactionAdapter {
    * Extract bank from transaction metadata
    */
   static extractBank(transaction) {
-    return transaction.metadata?.bank || 
-           transaction.metadata?.bank_name || 
-           transaction.customer?.bank || 
-           'Unknown';
+    return transaction.metadata?.bank ||
+      transaction.metadata?.bank_name ||
+      transaction.customer?.bank ||
+      'Unknown';
   }
 
   /**
    * Extract account from transaction metadata
    */
   static extractAccount(transaction) {
-    return transaction.metadata?.account || 
-           transaction.metadata?.account_number || 
-           transaction.metadata?.sender_account || 
-           'N/A';
+    return transaction.metadata?.account ||
+      transaction.metadata?.account_number ||
+      transaction.metadata?.sender_account ||
+      'N/A';
   }
 
   /**
@@ -189,7 +189,7 @@ export class TransactionAdapter {
    * Sort transactions by date (newest first)
    */
   static sortByDate(transactions) {
-    return [...transactions].sort((a, b) => 
+    return [...transactions].sort((a, b) =>
       new Date(b.date) - new Date(a.date)
     );
   }

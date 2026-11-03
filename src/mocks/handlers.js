@@ -3,7 +3,7 @@
  * These intercept fetch() at the network level.
  */
 import { http, HttpResponse, delay } from 'msw';
-import { generateTransactions, SAVINGS_PLANS, EXCHANGE_RATES } from './data';
+import { generateTransactions, SAVINGS_PLANS } from './data';
 
 // Bank code to name mapping (matches the grouped list in SendMoneyForm.jsx)
 const BANK_NAMES = {

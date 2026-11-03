@@ -316,12 +316,50 @@ export async function fetchSavings() {
 
 /**
  * Exchange Rate API Functions
- * Currently using MSW, to be integrated with Paystack or external API
+ * Integrated with OpenExchangeRates API for real-time rates
  */
 
+import { getExchangeRateService } from './services/exchangeRateService.js';
+
 export async function fetchRates() {
-  const data = await apiFetch('/api/rates');
-  return data;
+  // Use OpenExchangeRates API for real rates
+  try {
+    const exchangeRateService = getExchangeRateService();
+    const result = await exchangeRateService.fetchLatestRates('NGN');
+    
+    return {
+      rates: result.rates,
+      lastUpdated: result.lastUpdated,
+      base: result.base,
+      timestamp: result.timestamp,
+      disclaimer: result.disclaimer,
+      license: result.license,
+      updateStatus: result.updateStatus,
+    };
+  } catch (error) {
+    console.error('Error fetching exchange rates:', error);
+    // Fallback to MSW if OpenExchangeRates fails
+    const data = await apiFetch('/api/rates');
+    return data;
+  }
+}
+
+/**
+ * Convert currency using OpenExchangeRates API
+ * @param {number} amount - Amount to convert
+ * @param {string} from - Source currency
+ * @param {string} to - Target currency
+ * @returns {Promise<Object>} Conversion result
+ */
+export async function convertCurrency(amount, from, to) {
+  try {
+    const exchangeRateService = getExchangeRateService();
+    const result = await exchangeRateService.convertCurrency(amount, from, to);
+    return result;
+  } catch (error) {
+    console.error('Error converting currency:', error);
+    throw error;
+  }
 }
 
 /**

@@ -32,6 +32,7 @@ export const paystackConfig = {
     maxRetries: 3,
     retryDelay: 1000,
     retryableStatuses: [408, 429, 500, 502, 503, 504],
+    // The above ensures that we retry when we see these status codes. 
   },
 
   // Request timeout (milliseconds)

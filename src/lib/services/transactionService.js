@@ -26,18 +26,18 @@ class TransactionService {
   async fetchTransactions(filters = {}) {
     try {
       const response = await this.repository.listTransactions(filters);
-      
+
       // Apply additional client-side filtering if needed
       let transactions = response.data;
-      
+
       if (filters.status) {
         transactions = TransactionAdapter.filterByStatus(transactions, filters.status);
       }
-      
+
       if (filters.startDate && filters.endDate) {
         transactions = TransactionAdapter.filterByDateRange(
-          transactions, 
-          filters.startDate, 
+          transactions,
+          filters.startDate,
           filters.endDate
         );
       }

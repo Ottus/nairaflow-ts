@@ -67,10 +67,3 @@ export const SAVINGS_PLANS = [
   { id: 'sav-003', type: 'safelock', name: 'Safelock', target: 200000000, current: 120000000, apy: 12.0, locked: true },
 ];
 
-export const EXCHANGE_RATES = {
-  NGN: 1,
-  USD: 0.0007527,
-  GBP: 0.000505,
-  EUR: 0.000578,
-  CAD: 0.000938,
-};
